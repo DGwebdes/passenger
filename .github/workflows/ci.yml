@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: app/client/pnpm-lock.yaml
+
+      - name: Install dependencies
+        working-directory: app/client
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        working-directory: app/client
+        run: pnpm lint
+
+      - nam: Build
+        working-directory: app/client
+        run: pnpm build
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v4
+        with:
+          registry: ghrc.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: app/client
+          file: infra/docker/Dockerfile
+          push: true
+          tags: ghcr.io/${{ github.repository }}:latest
