@@ -35,7 +35,7 @@ jobs:
         working-directory: app/client
         run: pnpm lint
 
-      - nam: Build
+      - name: Build
         working-directory: app/client
         run: pnpm build
   
