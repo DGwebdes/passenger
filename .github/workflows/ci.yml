@@ -23,6 +23,8 @@ jobs:
           version: 12.4.1
           runtime: node@24
           cache: true
+          cache-dependency-path: app/client/pnpm-lock.yaml
+          package-json-file: app/client/package.json
 
       - name: Install dependencies
         working-directory: app/client
