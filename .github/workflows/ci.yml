@@ -63,6 +63,6 @@ jobs:
           file: infra/docker/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.REPO_LC}}:latest
-            ghcr.io/${{ github.REPO_LC}}:${{ github.sha }}
+            ghcr.io/${{ env.REPO_LC}}:latest
+            ghcr.io/${{ env.REPO_LC}}:${{ github.sha }}
 
