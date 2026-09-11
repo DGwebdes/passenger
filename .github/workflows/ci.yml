@@ -17,15 +17,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-
-      - name: Setup Node
-        uses: actions/setup-node@v6
+      - name: Setup pnpm and node
+        uses: pnpm/setup@v1
         with:
-          node-version: 24
-          cache: pnpm
-          cache-dependency-path: app/client/pnpm-lock.yaml
+          version: 12.4.1
+          runtime: node@24
+          cache: true
 
       - name: Install dependencies
         working-directory: app/client
