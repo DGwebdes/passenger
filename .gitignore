@@ -13,7 +13,6 @@ dist-ssr
 *.local
 .env
 test/
-server/
 
 # Editor directories and files
 .vscode/*
@@ -28,3 +27,32 @@ server/
 
 # Sentry Config File
 .env.sentry-build-plugin
+infra/terraform/terraform.tfvars
+
+# Local .terraform directories (downloaded provider plugins, modules cache)
+**/.terraform/*
+
+# State files — contain full resource details, sometimes including secrets
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# All .tfvars files — likely to contain project-specific or sensitive values
+*.tfvars
+*.tfvars.json
+
+# Local override files (used for local-only resource overrides)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Saved plan output, if you ever run `terraform plan -out=tfplan`
+*.tfplan
+
+# CLI config files
+.terraformrc
+terraform.rc
