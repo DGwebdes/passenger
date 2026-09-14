@@ -10,7 +10,7 @@ function App() {
         <div>
           <h1>Deployed from the pipeline to GCP</h1>
           <p>
-            Primarily used to test the whole pipeline. Development -> PR -> Merge to Main -> Test and Build in CI -> Containerized -> Image published -> Deployed to GCP Cloud Run
+            {"Primarily used to test the whole pipeline. Development -> PR -> Merge to Main -> Test and Build in CI -> Containerized -> Image published -> Deployed to GCP Cloud Run"}
           </p>
         </div>
         <button
