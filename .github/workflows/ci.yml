@@ -68,7 +68,7 @@ jobs:
 
   deploy:
     needs: publish
-    runs: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v3
