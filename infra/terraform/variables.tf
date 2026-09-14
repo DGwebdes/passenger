@@ -10,7 +10,7 @@ variable "gcp_region" {
 
 variable "image_url" {
   type        = string
-  description = "ghcr.io/dgwebdes/passenger:latest"
+  description = "ghcr.io/<user>/<repo>:latest"
 }
 
 

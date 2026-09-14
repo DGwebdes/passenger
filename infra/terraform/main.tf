@@ -34,6 +34,12 @@ resource "google_cloud_run_v2_service" "app" {
     type    = "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
     percent = 100
   }
+
+  lifecycle {
+    ignore_changes = [
+      template[0].containers[0].image,
+    ]
+  }
 }
 
 resource "google_cloud_run_v2_service_iam_member" "public_invoker" {
@@ -44,3 +50,20 @@ resource "google_cloud_run_v2_service_iam_member" "public_invoker" {
 }
 
 
+resource "google_service_account" "deployer" {
+  account_id    = "tier1-deployer"
+  display_name  = "CI deploy identity (tier 1)"
+}
+
+resource "google_cloud_run_v2_service_iam_member" "deployer_access" {
+  location  = google_cloud_run_v2_service.app.location
+  name      = google_cloud_run_v2_service.app.name
+  role      = "roles/run.developer"
+  member    = "serviceAccount:${google_service_account.deployer.email}"
+}
+
+resource "google_service_account_iam_member" "deployer_can_use_runtime_sa" {
+  service_account_id = google_service_account.app_runtime.name
+  role              = "roles/iam.serviceAccountUser"
+  member            = "serviceAccount:${google_service_account.deployer.email}"
+}
