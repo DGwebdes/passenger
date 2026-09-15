@@ -13,4 +13,9 @@ variable "image_url" {
   description = "ghcr.io/<user>/<repo>:latest"
 }
 
+variable "alert_email" {
+  type        = string
+  description = "Email address to receive alerts"
+}
+
 
