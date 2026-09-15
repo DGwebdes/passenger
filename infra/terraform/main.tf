@@ -93,12 +93,12 @@ resource "google_monitoring_alert_policy" "server_errors" {
       EOT
 
       comparison      = "COMPARISON_GT"
-      threshold_value = 1
-      duration        = "300s"
+      threshold_value = 0
+      duration        = "3s"
 
       aggregations {
         alignment_period   = "300s"
-        per_series_aligner = "ALIGN_RATE"
+        per_series_aligner = "ALIGN_DELTA"
       }
     }
   }
