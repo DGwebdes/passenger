@@ -1,10 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  label:
+    types: [build-and-deploy]
 
 permissions:
   contents: read
